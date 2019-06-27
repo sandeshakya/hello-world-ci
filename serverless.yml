@@ -10,8 +10,8 @@ service: hello-world-cd
 # exclude the code coverage files and circle ci files
 package:
   exclude:
-  - coverage/**
-  - .circleci/**
+    - coverage/**
+    - .circleci/**
 
 # The `provider` block defines where your service will be deployed
 provider:
@@ -21,10 +21,18 @@ provider:
 # The `functions` block defines what code to deploy
 functions:
   helloWorld:
-    handler: handler.helloWorld
+    handler: HelloWorld.helloWorld
     # The `events` block defines how to trigger the handler.helloWorld code
     events:
       - http:
           path: hello-world
+          method: get
+          cors: true
+  byeWorld:
+    handler: ByeWorld.byeWorld
+    # The `events` block defines how to trigger the handler.helloWorld code
+    events:
+      - http:
+          path: bye-world
           method: get
           cors: true
