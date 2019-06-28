@@ -28,25 +28,24 @@ jobs:
             npm install
             sudo apt-get install awscli
 
-
       # run tests
-      - run: 
+      - run:
           name: Run tests with code coverage
           command: npm test --coverage
 
-      # deploy app            
+      # deploy app
       - run:
-          name: Deploy application 
+          name: Deploy application
           command: sls deploy -v -s pre
 
       - run:
-          name: Deploy application 
+          name: Deploy application
           command: |
-          chmod +x scripts/aws-cli-assumerole.sh
-          source scripts/aws-cli-assumerole.sh
-          sls deploy -v -s prod
+            chmod +x scripts/aws-cli-assumerole.sh
+            source scripts/aws-cli-assumerole.sh
+            sls deploy -v -s prod
+
       - save_cache:
           paths:
             - node_modules
           key: dependencies-cache-{{ checksum "package.json" }}
-        
