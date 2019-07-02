@@ -22,6 +22,8 @@ provider:
 functions:
   helloWorld:
     handler: functions/HelloWorld.helloWorld
+    environment:
+      MY_ENV: environment variable here
     # The `events` block defines how to trigger the handler.helloWorld code
     events:
       - http:
